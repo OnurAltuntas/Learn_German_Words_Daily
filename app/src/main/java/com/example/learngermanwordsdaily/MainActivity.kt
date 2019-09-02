@@ -37,11 +37,8 @@ class MainActivity : AppCompatActivity() {
                 Glide.with(this).load(R.drawable.giphy).into(GifDrawableImageViewTarget(imgWheel, 1))
                 loop=loop-1
 
-
-
                 txtBound.text=loop.toString()
                 ran = Random.nextInt(0, 100)
-
 
 
                 Handler().postDelayed({
