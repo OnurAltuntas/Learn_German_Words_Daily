@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     val URL = "https://media.giphy.com/media/UUgNVN1kntCK54JOew/giphy.gif"
     var ran=0
+    var loop=10
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,21 +33,31 @@ class MainActivity : AppCompatActivity() {
         var veri=Veri()
 
         btnGo.setOnClickListener {
-            Glide.with(this).load(R.drawable.giphy).into(GifDrawableImageViewTarget(imgWheel, 1))
+            if(loop>0){
+                Glide.with(this).load(R.drawable.giphy).into(GifDrawableImageViewTarget(imgWheel, 1))
+                loop=loop-1
 
-           ran = Random.nextInt(0, 100)
 
-            println("SAYİ ::::::::::::::::::::::"+veri.ran)
 
-            Handler().postDelayed({
-                Toast.makeText(applicationContext, "" + ran, Toast.LENGTH_LONG).show()
-                txtShow.text = veri.words[ran].toString()
+                txtBound.text=loop.toString()
+                ran = Random.nextInt(0, 100)
 
-                //btnGo.isClickable=false
 
-            }, 3300)
 
-            // btnGo.isClickable=true
+                Handler().postDelayed({
+                    txtShow.text = veri.words[ran].toString()
+
+                    //btnGo.isClickable=false
+
+                }, 3300)
+                if(loop==0){
+                    Toast.makeText(applicationContext,"You have reached your daily limit!",Toast.LENGTH_LONG).show()
+                }
+
+
+                // btnGo.isClickable=true
+            }
+
 
 
         }

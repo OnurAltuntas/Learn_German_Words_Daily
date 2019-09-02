@@ -17,7 +17,7 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onResume() {
 
-        object:CountDownTimer(5000,1000){
+        object:CountDownTimer(3000,1000){
             override fun onFinish() {
                 var intent=Intent(this@SplashActivity,MainActivity::class.java)
                 startActivity(intent)
