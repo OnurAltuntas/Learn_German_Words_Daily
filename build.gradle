@@ -6,7 +6,6 @@ buildscript {
         google()
         jcenter()
 
-        
     }
 
     dependencies {
