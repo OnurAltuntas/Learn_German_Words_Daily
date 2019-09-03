@@ -3,6 +3,7 @@ package com.example.learngermanwordsdaily
 import GifDrawableImageViewTarget
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -38,11 +39,9 @@ class MainActivity : AppCompatActivity() {
 
         var formatter = SimpleDateFormat("dd/MM/yyyy")
 
-
         var installday =formatter.parse(formatter.format( Date()))
 
         var showDate = sharedPreferences.getString("DATE","none")
-
 
         var str1=installday.toString()
         var str2=showDate.toString()
