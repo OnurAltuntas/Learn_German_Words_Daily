@@ -74,11 +74,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="86dp"
-        android:text="10"
         android:textColor="#E1E2EC"
         android:textSize="80sp"
         app:layout_constraintEnd_toStartOf="@+id/imgWheel"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imgWheel"
         app:layout_constraintTop_toTopOf="@+id/imgWheel" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
