@@ -7,12 +7,12 @@ import kotlinx.android.synthetic.main.activity_word.*
 
 class WordActivity : AppCompatActivity() {
     var word="wie"
-
+    var randomValue=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_word)
 
-        var randomValue= intent.getStringExtra("deger").toInt()
+        randomValue= intent.getStringExtra("deger").toInt()
 
         var veri2=Veri()
 
