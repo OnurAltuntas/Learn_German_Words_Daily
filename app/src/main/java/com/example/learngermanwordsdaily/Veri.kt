@@ -1,9 +1,10 @@
 package com.example.learngermanwordsdaily
 
  class Veri {
-    var ran=0
+    var veritarih=""
 
-    var words = listOf<String>(
+
+     var words = listOf<String>(
         "ich\n",
         "sie\n",
         "das\n",
