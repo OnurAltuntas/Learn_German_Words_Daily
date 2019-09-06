@@ -7,6 +7,8 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -40,17 +42,19 @@ class MainActivity : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_main)
 
+        setSupportActionBar(bar)
+
         var sharedPreferences = this.getSharedPreferences(packageName, android.content.Context.MODE_PRIVATE)
-        val url="https://api.timezonedb.com/v2.1/get-time-zone?key=EBPJG1SJ3JV5&format=json&by=zone&zone=America/Chicago"
+        val url="https://worldtimeapi.org/api/timezone/Europe/Moscow"
         val dateobject=JsonObjectRequest(Request.Method.GET,url,null,object:Response.Listener<JSONObject>{
             override fun onResponse(response: JSONObject?) {
                 var veri=Veri()
-                var currentdate=response!!.getString("formatted")
+                var currentdate=response!!.getString("datetime")
 
                 var string: String? = currentdate
-                var yourArray: List<String> = string!!.split(" ")
+                var yourArray: List<String> = string!!.split("T")
                 currentdate=yourArray[0]
-                txttarih2.text=currentdate
+
 
 
 //              var formatter = SimpleDateFormat("dd/MM/yyyy")
@@ -62,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                 var str1=installday.toString()
                 var str2=showDate.toString()
 
-                txttarih.text=str1
+
 
                 if(str1.equals(str2)){
                     loop=sharedPreferences.getString("loop","none")!!.toInt()
@@ -87,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                         ran = Random.nextInt(0, 100)
 
                         Handler().postDelayed({
-                            txtShow.text = veri.words[ran].toString()
+                            txtShow.text = veri.words[ran].toString().toUpperCase()
                             btnGo.isClickable=true
 
 
@@ -103,7 +107,6 @@ class MainActivity : AppCompatActivity() {
 
                 }
             }
-
         },object:Response.ErrorListener{
             override fun onErrorResponse(error: VolleyError?) {
                 Toast.makeText(this@MainActivity,"Url Hatasi ",Toast.LENGTH_LONG).show()
@@ -120,6 +123,34 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
+
+        val inflater = menuInflater
+        inflater.inflate(R.menu.bottom_barmenu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            R.id.app_bar_fav -> toast("Fav menu item is clicked!")
+            R.id.app_bar_freeadvert -> toast("Search menu item is clicked!")
+            R.id.app_bar_settings -> toast("Settings item is clicked!")
+
+            android.R.id.home -> {
+                val bottomNavDrawerFragment = BottomNavigationDrawerFragment()
+                bottomNavDrawerFragment.show(supportFragmentManager, bottomNavDrawerFragment.tag)
+            }
+        }
+        return true
+    }
+
+    public fun toast(str:String){
+        Toast.makeText(applicationContext,str,Toast.LENGTH_SHORT).show()
     }
 
 }
